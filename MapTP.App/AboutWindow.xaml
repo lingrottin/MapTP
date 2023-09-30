@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapTP.App"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="237" Width="400">
+        Title="About MapTP" Height="237" Width="400">
     <StackPanel Height="450" Margin="20">
         <TextBlock HorizontalAlignment="Left" Margin="5" Text="About MapTP" Style="{StaticResource TextBlockTitleBold}"/>
         <TextBlock HorizontalAlignment="Left" Margin="5" Text="MapTP v1.0.0 © Lingrottin 2023, some rights reserved" Style="{StaticResource TextBlockDefault}"/>
