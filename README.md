@@ -1,2 +1,2 @@
 # MapTP
- Mapping touchpad inputs absolutely
+Mapping touchpad inputs absolutely.
