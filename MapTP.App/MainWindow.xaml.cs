@@ -1,20 +1,21 @@
-﻿using HandyControl.Controls;
-using MapTP.App.Touchpad;
+﻿using MapTP.App.Touchpad;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Xml;
 using System.Xml.Serialization;
+using Walterlv.Windows.Effects;
 
 namespace MapTP.App
 {
     /// <summary>
     /// MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : BlurWindow
+    public partial class MainWindow : Window
     {
         /// <summary>
         /// This variable describes if a PTP exists
@@ -106,12 +107,13 @@ namespace MapTP.App
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
             var w = new AboutWindow();
-            w.ShowDialog();
+            w.Show();
         }
 
         private void SuggestButtonClick(object sender, RoutedEventArgs e)
@@ -131,6 +133,23 @@ namespace MapTP.App
             {
                 HandyControl.Controls.MessageBox.Show("Please calibrate first!");
             }
+        }
+
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+            return;
+        }
+
+        private void OnMinButtonClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+            System.Windows.Application.Current.Shutdown();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -168,7 +187,23 @@ namespace MapTP.App
             }
         }
 
-       
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            
+            var WalterlvCompositor = new WindowAccentCompositor(this)
+            {
+                Color = Color.FromArgb(0x33, 0x87, 0xce, 0xfa)
+            };
+            WalterlvCompositor.IsEnabled = true;
+
+            if (!(Environment.OSVersion.Version > new Version(10, 0, 17763)))
+            {
+                this.Background = Brushes.Aqua;
+                WalterlvCompositor.IsEnabled = false;
+            }
+        }
+
+
         /// <summary>
         /// This method is for limiting TextBoxes only to accept numbers
         /// </summary>
@@ -384,7 +419,6 @@ namespace MapTP.App
                             InputX = x.X;
                             InputY = x.Y;
 
-                            ValueTextBox.Text = $"{x.X},{x.Y}";
                             if (started && (tpsx <= x.X && x.X <= tpex) && (tpsy <= x.Y && x.Y <= tpey))
                             {
                                 try

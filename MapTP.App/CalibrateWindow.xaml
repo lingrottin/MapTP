@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Touchpad size calibration" Height="200" Width="400">
     <UniformGrid Columns="1" FocusManager.FocusedElement="{Binding ElementName=OkButton}">
-        <TextBlock HorizontalAlignment="Center" Width="360" Margin="20,0,20,0" TextWrapping="Wrap" Text="Please touch the Bottom-Right corner of your touchpad." Style="{StaticResource TextBlockTitle}" TextAlignment="Center"/>
+        <TextBlock x:Name="PleaseTouch" HorizontalAlignment="Center" Width="360" Margin="20,0,20,0" TextWrapping="Wrap" Text="Please touch the Bottom-Right corner of your touchpad." Style="{StaticResource TextBlockTitle}" TextAlignment="Center"/>
         <TextBlock x:Name="TouchpadSize" HorizontalAlignment="Center" Width="360" TextWrapping="Wrap" Text="touchpad size:" Style="{StaticResource TextBlockDefault}" TextAlignment="Center"/>
         <Button x:Name="OkButton" IsDefault="True" Style="{StaticResource ButtonPrimary}" Content="OK (Enter)" Click="OkButton_Click"/>
 

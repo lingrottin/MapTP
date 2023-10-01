@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MapTP.App.Touchpad;
+using System;
 using System.Windows;
 using System.Windows.Interop;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using HandyControl.Controls;
-using MapTP.App.Touchpad;
+using Walterlv.Windows.Effects;
 
 namespace MapTP.App
 {
     /// <summary>
     /// CalibrateWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class CalibrateWindow : System.Windows.Window
+    public partial class CalibrateWindow : Window
     {
         private int X=0, Y=0;
         private HwndSource MainWindowHwnd;
@@ -37,6 +27,7 @@ namespace MapTP.App
             MainWindowHwnd = _MainWindowHwnd;
             MainWindowHwnd.AddHook(WndProc);
         }
+
 
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
