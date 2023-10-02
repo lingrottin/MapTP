@@ -7,9 +7,11 @@
         xmlns:local="clr-namespace:MapTP.App"
         mc:Ignorable="d"
         Title="MapTP" Height="500" Width="800"
-        Background="{x:Null}">
+        Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}"
+        WindowStyle="None"
+        Background="#33aaaaff">
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0,0,0,1"/>
+        <WindowChrome x:Name="WindowChrome" GlassFrameThickness="0,0,-1,0"/>
     </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>

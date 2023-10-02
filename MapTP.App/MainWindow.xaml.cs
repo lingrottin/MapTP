@@ -8,7 +8,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Serialization;
-using Walterlv.Windows.Effects;
 
 namespace MapTP.App
 {
@@ -98,9 +97,12 @@ namespace MapTP.App
         {
             this.TouchpadSizeX = X;
             this.TouchpadSizeY = Y;
-            TpAreaRect.Width = CalculateRectangle(TouchpadSizeX, TouchpadSizeY);
-            TpRectGrid.Width = CalculateRectangle(TouchpadSizeX, TouchpadSizeY);
-            TouchpadSizeTB.Text = $"Touchpad size: {TouchpadSizeX}x{TouchpadSizeY}";
+            if (TouchpadSizeX != 0 && TouchpadSizeY != 0)
+            {
+                TpAreaRect.Width = CalculateRectangle(TouchpadSizeX, TouchpadSizeY);
+                TpRectGrid.Width = CalculateRectangle(TouchpadSizeX, TouchpadSizeY);
+                TouchpadSizeTB.Text = $"Touchpad size: {TouchpadSizeX}x{TouchpadSizeY}";
+            }
             return;
         }
 
@@ -190,19 +192,42 @@ namespace MapTP.App
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             
-            var WalterlvCompositor = new WindowAccentCompositor(this)
-            {
-                Color = Color.FromArgb(0x33, 0x87, 0xce, 0xfa)
-            };
-            WalterlvCompositor.IsEnabled = true;
-
+            
             if (!(Environment.OSVersion.Version > new Version(10, 0, 17763)))
             {
-                this.Background = Brushes.Aqua;
-                WalterlvCompositor.IsEnabled = false;
+                this.Background = Brushes.White;
+            }
+            else if (Environment.OSVersion.Version.Build >= 22000) // Mica
+            {
+
+                // Get PresentationSource
+                PresentationSource presentationSource = PresentationSource.FromVisual((Visual)sender);
+
+                // Subscribe to PresentationSource's ContentRendered event
+                presentationSource.ContentRendered += (s,ev)=>OnRendered(PresentationSource.FromVisual((Visual)sender) as HwndSource);
+                
+            }
+            else
+            {
+
+                var WalterlvCompositor = new BlurManager(this)
+                {
+                    Color = Color.FromArgb(0x33, 0x87, 0xce, 0xfa)
+                };
+                WalterlvCompositor.IsEnabled = true;
             }
         }
 
+        /// <summary>
+        /// Enable Mica when the window is rendered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRendered(HwndSource src)
+        {
+            var mica = new Mica(src);
+            mica.enable = true;
+        }
 
         /// <summary>
         /// This method is for limiting TextBoxes only to accept numbers

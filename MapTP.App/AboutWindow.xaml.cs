@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
-using Walterlv.Windows.Effects;
 
 namespace MapTP.App
 {
