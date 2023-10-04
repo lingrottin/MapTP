@@ -444,13 +444,21 @@ namespace MapTP.App
                             InputX = x.X;
                             InputY = x.Y;
 
-                            if (started && (tpsx <= x.X && x.X <= tpex) && (tpsy <= x.Y && x.Y <= tpey))
+                            if (started)
                             {
                                 try
                                 {
                                     int X, Y;
-                                    X = (int)Math.Floor((((decimal)(x.X - tpsx) / tpgx * scgx) + scsx) / ScreenSizeX * 65535);
-                                    Y = (int)Math.Floor((((decimal)(x.Y - tpsy) / tpgy * scgy) + scsy) / ScreenSizeY * 65535);
+                                    X = (tpsx <= x.X ? 
+                                            (tpex >= x.X ? 
+                                                (int)Math.Floor((((decimal)(x.X - tpsx) / tpgx * scgx) + scsx) / ScreenSizeX * 65535)
+                                            : (int)Math.Floor((decimal)scex/ScreenSizeX*65535) )
+                                        : (int)Math.Floor((decimal)scsx / ScreenSizeX * 65535) );
+                                    Y = (tpsy <= x.Y ?
+                                            (tpey >= x.Y ? 
+                                                (int)Math.Floor((((decimal)(x.Y - tpsy) / tpgy * scgy) + scsy) / ScreenSizeY * 65535)
+                                            : (int)Math.Floor((decimal)scey / ScreenSizeY * 65535) )
+                                        : (int)Math.Floor((decimal)scsy / ScreenSizeY * 65535) );
                                     mouseProcessor.MoveCursor(X, Y);
 
                                 }
