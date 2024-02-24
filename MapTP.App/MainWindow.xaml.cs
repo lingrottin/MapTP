@@ -206,15 +206,16 @@ namespace MapTP.App
                 // Subscribe to PresentationSource's ContentRendered event
                 presentationSource.ContentRendered += (s,ev)=>OnRendered(PresentationSource.FromVisual((Visual)sender) as HwndSource);
                 
+
             }
             else
             {
-
                 var WalterlvCompositor = new BlurManager(this)
                 {
-                    Color = Color.FromArgb(0x33, 0x87, 0xce, 0xfa)
+                    Color = Color.FromArgb(0x1f, 0x87, 0xce, 0xfa),
+                    IsEnabled = true
                 };
-                WalterlvCompositor.IsEnabled = true;
+                this.WindowChrome.GlassFrameThickness = new Thickness(0, 0, 1, 0);
             }
         }
 
@@ -417,7 +418,7 @@ namespace MapTP.App
 
         private void OnWindowCloses(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            SaveConfig();
+            if (ptpExists) SaveConfig();
             e.Cancel = false;
             return;
         }

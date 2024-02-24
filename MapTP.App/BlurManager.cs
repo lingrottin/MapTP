@@ -80,7 +80,7 @@ namespace MapTP.App
                 var osVersion = Environment.OSVersion.Version;
                 var windows10_1809 = new Version(10, 0, 17763);
                 var windows10 = new Version(10, 0);
-            var windows11_buildver = 22000;
+                var windows11_buildver = 22000;
 
                 // 创建 AccentPolicy 对象。
                 var accent = new AccentPolicy();
@@ -91,10 +91,10 @@ namespace MapTP.App
                     accent.AccentState = AccentState.ACCENT_DISABLED;
                 }
                 else if(Environment.OSVersion.Version.Build >= windows11_buildver)
-            {
-                accent.AccentState = AccentState.ACCENT_INVALID_STATE; // disable Acrylic and do nothing
-            }
-            else if (osVersion > windows10_1809)
+                {
+                    accent.AccentState = AccentState.ACCENT_INVALID_STATE; // disable Acrylic and do nothing
+                }
+                else if (osVersion > windows10_1809)
                 {
                     // 如果系统在 Windows 10 (1809) 以上，则启用亚克力效果，并组合已设置的叠加颜色和透明度。
                     //  请参见《在 WPF 程序中应用 Windows 10 真•亚克力效果》
