@@ -206,17 +206,6 @@ namespace MapTP.App.Touchpad
                     switch (valueCap.LinkCollection)
                     {
                         case 0:
-                            /*
-                            switch (valueCap.UsagePage, valueCap.Usage)
-                            {
-                                case (0x0D, 0x56): // Scan Time
-                                    scanTime = value;
-                                    break;
-
-                                case (0x0D, 0x54): // Contact Count
-                                    contactCount = value;
-                                    break;
-                            }*/
                             if (valueCap.UsagePage == 0x0D)
                             {
                                 switch (valueCap.Usage)
@@ -235,21 +224,6 @@ namespace MapTP.App.Touchpad
                             break;
 
                         default:
-                            /*
-                            switch (valueCap.UsagePage, valueCap.Usage)
-                            {
-                                case (0x0D, 0x51): // Contact ID
-                                    creator.ContactId = (int)value;
-                                    break;
-
-                                case (0x01, 0x30): // X
-                                    creator.X = (int)value;
-                                    break;
-
-                                case (0x01, 0x31): // Y
-                                    creator.Y = (int)value;
-                                    break;
-                            }*/
                             if (valueCap.UsagePage == 0x0D)
                             {
                                 if (valueCap.Usage == 0x51)
@@ -268,7 +242,10 @@ namespace MapTP.App.Touchpad
                                         creator.Y = (int)value;
                                         break;
                                 }
-                            }
+                            }else if(valueCap.UsagePage == 0x09 && valueCap.Usage == 0x42)
+                            {
+                                creator.TipSwitch = (int)value;
+                            } 
                             break;
                     }
 

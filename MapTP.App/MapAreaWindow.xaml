@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MapTP.App"
         mc:Ignorable="d"
         Title="MapAreaWindow" Height="450" Width="800" WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="True" Topmost="True"
         Background="#00ffffff">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" x:Name="WindowChrome"></WindowChrome>

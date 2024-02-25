@@ -89,6 +89,51 @@ namespace MapTP.App
                 return;
             
         }
+
+        public void MouseDown()
+        {
+            INPUT[] _input = new INPUT[1];
+            _input[0] = new INPUT
+            {
+                type = 0, // INPUT_MOUSE
+                mkhi = new MOUSEKEYBDHARDWAREINPUT
+                {
+                    mi = new MOUSEINPUT
+                    {
+                        dx = 0,
+                        dy = 0,
+                        mouseData = 0,
+                        dwFlags = 0x0002, // MOUSEEVENTF_LEFTDOWN
+                        time = 0 // Windows will provide this
+                    }
+                }
+            };
+            SendInput((uint)1, _input, Marshal.SizeOf(typeof(INPUT)));
+            return;
+        }
+
+        public void MouseUp()
+        {
+            INPUT[] _input = new INPUT[1];
+            _input[0] = new INPUT
+            {
+                type = 0, // INPUT_MOUSE
+                mkhi = new MOUSEKEYBDHARDWAREINPUT
+                {
+                    mi = new MOUSEINPUT
+                    {
+                        dx = 0,
+                        dy = 0,
+                        mouseData = 0,
+                        dwFlags = 0x0004, // MOUSEEVENTF_LEFTUP
+                        time = 0 // Windows will provide this
+                    }
+                }
+            };
+            SendInput((uint)1, _input, Marshal.SizeOf(typeof(INPUT)));
+            return;
+        }
+
         public MouseProcessor()
         {
         }

@@ -22,17 +22,7 @@ namespace MapTP.App
     /// </summary>
     public partial class MapAreaWindow : Window
     {
-        #region Win32
-        private const int WS_EX_TRANSPARENT = 0x20;
-
-        private const int GWL_EXSTYLE = -20;
-
-        [DllImport("user32", EntryPoint = "SetWindowLong")]
-        private static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
-
-        [DllImport("user32", EntryPoint = "GetWindowLong")]
-        private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
-        #endregion
+        
 
         public delegate void SendArea(int scsx, int scsy, int scex, int scey);
         public SendArea sendArea;

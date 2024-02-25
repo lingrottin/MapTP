@@ -440,7 +440,9 @@ namespace MapTP.App
             return;
         }
 
-
+        public bool Turtle;
+        private int nowTipSwitch=0;
+       
         /// <summary>
         /// This method is for processing touchpad inputs
         /// </summary>
@@ -461,7 +463,6 @@ namespace MapTP.App
                         {
                             InputX = x.X;
                             InputY = x.Y;
-
                             if (started)
                             {
                                 try
@@ -478,13 +479,16 @@ namespace MapTP.App
                                             : (int)Math.Floor((decimal)scey / ScreenSizeY * 65535) )
                                         : (int)Math.Floor((decimal)scsy / ScreenSizeY * 65535) );
                                     mouseProcessor.MoveCursor(X, Y);
-
+                                    if (nowTipSwitch == 1 && x.TipSwitch == 0 && Turtle) mouseProcessor.MouseUp();
+                                    if (nowTipSwitch == 0 && x.TipSwitch == 1 && Turtle) mouseProcessor.MouseDown();
                                 }
                                 catch (Exception e)
                                 {
                                     HandyControl.Controls.MessageBox.Show(e.ToString());
                                 }
                             }
+                            nowTipSwitch = x.TipSwitch;
+
 
                         }
                     }

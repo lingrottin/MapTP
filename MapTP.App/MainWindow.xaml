@@ -102,7 +102,10 @@
                 <Border x:Name="OpCard" Grid.Row="3" Background="#99FFFFFF" Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow2}" Margin="20,20,20,0">
                     <StackPanel>
                         <TextBlock HorizontalAlignment="Left" Margin="5,5,5,10" Text="Options" Style="{StaticResource TextBlockTitle}"/>
-                        <Button HorizontalAlignment="Left" Click="OnLaunchInspectorClick">Launch Inspector</Button>
+                        <WrapPanel>
+                            <Button HorizontalAlignment="Left" Click="OnLaunchInspectorClick" Margin="0,0,10,0">Launch Inspector</Button>
+                            <CheckBox x:Name="TurtleBox" IsChecked="{Binding Path=Turtle, Mode=TwoWay}">Turtle mode</CheckBox>
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
 
