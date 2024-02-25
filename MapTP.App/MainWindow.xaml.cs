@@ -106,6 +106,15 @@ namespace MapTP.App
             return;
         }
 
+        public void ReceiveScreenMapArea(int scsx, int scsy, int scex, int scey)
+        {
+            Scsx.Text = scsx.ToString();
+            Scex.Text = scex.ToString();
+            Scsy.Text = scsy.ToString();
+            Scey.Text = scey.ToString();
+            this.StartButtonClick(new object(), new RoutedEventArgs());
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -152,6 +161,15 @@ namespace MapTP.App
         {
             Close();
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void OnLaunchInspectorClick(object sender, RoutedEventArgs e)
+        {
+            MapAreaWindow w = new MapAreaWindow()
+            {
+                sendArea = ReceiveScreenMapArea
+            };
+            w.Show();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -210,7 +228,7 @@ namespace MapTP.App
             }
             else
             {
-                var WalterlvCompositor = new BlurManager(this)
+                var WalterlvCompositor = new WalterlvBlurManager(this)
                 {
                     Color = Color.FromArgb(0x1f, 0x87, 0xce, 0xfa),
                     IsEnabled = true
@@ -295,7 +313,6 @@ namespace MapTP.App
 
         private void OnScreenMapUpdate(object sender, RoutedEventArgs e)
         {
-            StopButtonClick(sender, e);
             bool notEmpty = Scsx.Text != "" && Scsy.Text != "" && Scex.Text != "" && Scey.Text != "";
             if (notEmpty)
             {

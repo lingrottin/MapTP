@@ -1,0 +1,39 @@
+﻿<Window x:Class="MapTP.App.MapAreaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MapTP.App"
+        mc:Ignorable="d"
+        Title="MapAreaWindow" Height="450" Width="800" WindowStyle="None"
+        AllowsTransparency="True"
+        Background="#00ffffff">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="5" x:Name="WindowChrome"></WindowChrome>
+    </WindowChrome.WindowChrome>
+    <Border Background="Transparent" BorderThickness="2" BorderBrush="AliceBlue" x:Name="MainBorder">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Background="Transparent" BorderBrush="Transparent" Foreground="White">MapTP</Label>
+                <Label Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Foreground="White" x:Name="Position"></Label>
+                <Border Grid.Column="2" BorderThickness="0" Background="#33ffffff" MouseLeftButtonDown="OnTitleBarMouseDown">
+                    <Label Background="Transparent" BorderBrush="Transparent" Foreground="White">Drag here to move</Label>
+                </Border>
+                    <Grid x:Name="CloseGrid" Grid.Column="3" Background="#33112255"
+                          MouseEnter="CloseGrid_MouseEnter" MouseLeave="CloseGrid_MouseLeave" MouseLeftButtonUp="CloseGrid_Click">
+                        <Label Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="0,5,0,5" Width="Auto">Close</Label>
+                    </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace MapTP.App
 {
-    internal class BlurManager
+    internal class WalterlvBlurManager
     {
         // Completely from Walterlv
 
@@ -22,10 +22,10 @@ namespace MapTP.App
             private int _blurColor;
 
             /// <summary>
-            /// 创建 <see cref="BlurManager"/> 的一个新实例。
+            /// 创建 <see cref="WalterlvBlurManager"/> 的一个新实例。
             /// </summary>
             /// <param name="window">要创建模糊特效的窗口实例。</param>
-            public BlurManager(Window window) => _window = window ?? throw new ArgumentNullException(nameof(window));
+            public WalterlvBlurManager(Window window) => _window = window ?? throw new ArgumentNullException(nameof(window));
 
             /// <summary>
             /// 获取或设置此窗口模糊特效是否生效的一个状态。
