@@ -230,6 +230,11 @@ namespace MapTP.App.Touchpad
                                 {
                                     creator.ContactId = (int)value;
                                 }
+                                else if(valueCap.Usage == 0x42)
+                                {
+                                    creator.TipSwitch = (int)value;
+
+                                }
                             }
                             else if (valueCap.UsagePage == 0x01)
                             {
@@ -242,10 +247,7 @@ namespace MapTP.App.Touchpad
                                         creator.Y = (int)value;
                                         break;
                                 }
-                            }else if(valueCap.UsagePage == 0x09 && valueCap.Usage == 0x42)
-                            {
-                                creator.TipSwitch = (int)value;
-                            } 
+                            }
                             break;
                     }
 
