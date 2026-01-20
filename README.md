@@ -1,7 +1,7 @@
 # MapTP
 ![](/assets/logo.png)<br>
 Mapping touchpad inputs absolutely.  
-\[[中文](/README_zh.md)\]
+\[[中文](/README_zh.md)\]\[[中文版下载](https://github.com/Sashwind888/MapTP-translate)\]
 
 ## Download
 Head to [Release page](https://github.com/lingrottin/MapTP/releases/latest).
