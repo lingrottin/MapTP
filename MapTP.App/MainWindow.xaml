@@ -101,6 +101,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="5" Text="Options" Style="{StaticResource TextBlockTitle}"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -113,6 +114,22 @@
                             <CheckBox x:Name="TurtleCB" Content="Turtle mode" IsChecked="False" Click="TurtleCBClick"></CheckBox>
                             <CheckBox x:Name="TrayCB" Content="Enable Tray icon" Margin="10,0,0,0" IsChecked="True" Click="TrayCBClick"></CheckBox>
                             <CheckBox x:Name="HideCB" Content="Hide to tray when minimized" Margin="10,0,0,0" IsChecked="True"></CheckBox>
+                        </StackPanel>
+                        <!-- Sensitivity settings -->
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" Grid.Row="3">
+                            <StackPanel Margin="0,0,15,0">
+                                <TextBlock Text="Tap Time (ms)" />
+                                <TextBox x:Name="TapTimeBox" Width="80" Text="180" PreviewTextInput="limitnumber" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,15,0">
+                                <TextBlock Text="Tap Move X (abs)" />
+                                <TextBox x:Name="TapMoveXBox" Width="80" Text="1200" PreviewTextInput="limitnumber" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,15,0">
+                                <TextBlock Text="Tap Move Y (abs)" />
+                                <TextBox x:Name="TapMoveYBox" Width="80" Text="1200" PreviewTextInput="limitnumber" />
+                            </StackPanel>
+                            <Button Content="Apply" Click="OnApplySensitivityClick" />
                         </StackPanel>
                     </Grid>
                 </Border>

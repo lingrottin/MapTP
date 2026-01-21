@@ -31,23 +31,23 @@ namespace MapTP.App
         public _TriggerEvent MainWindow_Start;
         public _TriggerEvent MainWindow_Turtle;
 
-        private readonly int X,Y, eX, eY;
+        private readonly int X, Y, eX, eY;
 
         public InspectorWindow(int X, int Y, int eX, int eY)
         {
             InitializeComponent();
-            this.X= X;
-            this.Y= Y;
-            this.eX= eX;
-            this.eY= eY;
+            this.X = X;
+            this.Y = Y;
+            this.eX = eX;
+            this.eY = eY;
         }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            this.LocationChanged+= OnTransformChanged;
+            this.LocationChanged += OnTransformChanged;
             this.SizeChanged += OnTransformChanged;
-            this.DpiRatio=ScreenManager.GetDpiRatio(this);
+            this.DpiRatio = ScreenManager.GetDpiRatio(this);
             this.Loaded += OnLoaded;
         }
 
@@ -67,12 +67,14 @@ namespace MapTP.App
             var y = (int)(this.Top * DpiRatio);
             var ex = (int)((this.Left + this.width) * DpiRatio);
             var ey = (int)((this.Top + this.height) * DpiRatio);
-            if (x >= 0 && y >= 0 && ex <= ScreenManager.GetScreenWidth() && ey <= ScreenManager.GetScreenHeight()) {
-                TitleBar.Background = new SolidColorBrush(Color.FromArgb(0x33,0xff,0xff,0xff));
-                SendScreenArea(x, y, ex, ey); 
+            if (x >= 0 && y >= 0 && ex <= ScreenManager.GetScreenWidth() && ey <= ScreenManager.GetScreenHeight())
+            {
+                TitleBar.Background = new SolidColorBrush(Color.FromArgb(0x33, 0xff, 0xff, 0xff));
+                SendScreenArea(x, y, ex, ey);
             }
-            else {
-                TitleBar.Background = new SolidColorBrush(Color.FromArgb(0x33,0xff,0x00,0x00));
+            else
+            {
+                TitleBar.Background = new SolidColorBrush(Color.FromArgb(0x33, 0xff, 0x00, 0x00));
             }
         }
 
@@ -102,8 +104,8 @@ namespace MapTP.App
             {
                 MainWindow_Start(sender, e);
             }
-            this.StopButton.Visibility=Visibility.Visible;
-            this.StartButton.Visibility=Visibility.Collapsed;
+            this.StopButton.Visibility = Visibility.Visible;
+            this.StartButton.Visibility = Visibility.Collapsed;
         }
 
         private void StopButtonClick(object sender, RoutedEventArgs e)
@@ -112,8 +114,8 @@ namespace MapTP.App
             {
                 MainWindow_Stop(sender, e);
             }
-            this.StopButton.Visibility=Visibility.Collapsed;
-            this.StartButton.Visibility=Visibility.Visible;
+            this.StopButton.Visibility = Visibility.Collapsed;
+            this.StartButton.Visibility = Visibility.Visible;
         }
 
     }
